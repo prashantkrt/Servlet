@@ -3,10 +3,10 @@ package com.jdbc.util;
 import java.sql.*;
 
 public class JDBCUtility {
-	
+
 	static {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");			
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -26,27 +26,25 @@ public class JDBCUtility {
 	}
 
 	public static void closeResources(Connection con, Statement statement, ResultSet st) {
-		if (con != null) {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+		try {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
-		}
-		if (statement != null) {
-			try {
-				statement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
-		}
-		if (st != null) {
-			try {
-				st.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (st != null) {
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-
 }
